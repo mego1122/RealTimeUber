@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33712.159
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealTimeUber", "RealTimeUber.csproj", "{510E6B15-1A57-4EEF-AAD1-4CCAEC20ABA3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealTimeUber", "RealTimeUber.csproj", "{38FDB3E7-A107-4E2E-8AEC-B7C9EAD3EFDD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{510E6B15-1A57-4EEF-AAD1-4CCAEC20ABA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{510E6B15-1A57-4EEF-AAD1-4CCAEC20ABA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{510E6B15-1A57-4EEF-AAD1-4CCAEC20ABA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{510E6B15-1A57-4EEF-AAD1-4CCAEC20ABA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38FDB3E7-A107-4E2E-8AEC-B7C9EAD3EFDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38FDB3E7-A107-4E2E-8AEC-B7C9EAD3EFDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38FDB3E7-A107-4E2E-8AEC-B7C9EAD3EFDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38FDB3E7-A107-4E2E-8AEC-B7C9EAD3EFDD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {7FE05003-B2F9-40DB-8397-0897BB2B0E5C}
+		SolutionGuid = {7D97412C-004A-4C2B-80DC-91BA31AD82BA}
 	EndGlobalSection
 EndGlobal

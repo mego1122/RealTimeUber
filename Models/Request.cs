@@ -1,26 +1,35 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RealTimeUber.Models
 {
     public class Request
     {
-
         [Key]
-        public string Id { get; set; }
-        [Required]
-        public string DriverId { get; set; }
+        public int Id { get; set; }
 
-        [ForeignKey("DriverId")]
-        public Driver Driver { get; set; }
 
-        [Required]
-        public string PassengerId { get; set; }
 
-        [ForeignKey("PassengerId")]
+        [ForeignKey("Passenger")]
+        public string PassengerId { get; set; }  // FK
+
+        [ForeignKey("StartLocation")]
+        public int StartLocationId { get; set; }
+
+        [ForeignKey("EndLocation")]
+        public int EndLocationId { get; set; }
+
+
+
+
         public Passenger Passenger { get; set; }
-        public Location PickupLocation { get; set; }
-      
+        public StartLocation StartLocation { get; set; }
+        public EndLocation EndLocation { get; set; }
+
     }
+
+
 
 }

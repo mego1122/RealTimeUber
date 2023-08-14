@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RealTimeUber.Models
@@ -6,34 +8,28 @@ namespace RealTimeUber.Models
     public class Trip
     {
         [Key]
-        public string Id { get; set; }
-
-
-        [Required]
-        public string IdentityUserId { get; set; }
-
-        [ForeignKey("IdentityUserId")]
-        public IdentityUser IdentityUser { get; set; }
-
-        
+        public int TripId { get; set; }
 
 
 
-        [Required]
-        public string VehicleId { get; set; }
 
-        [ForeignKey("VehicleId")]
+
+
+
+
+        [ForeignKey("Request")]
+        public int RequestId { get; set; }
+        public Request Request { get; set; }
+
+
+        [StringLength(450)]
+        [ForeignKey("Driver")]
+        public string DriverId { get; set; }
+        public Driver Driver { get; set; }
+
+
+        [ForeignKey("Vehicle")]
+        public int VehicleId { get; set; }
         public Vehicle Vehicle { get; set; }
-
-
-        public Location StartLocation { get; set; }
-
-        public Location EndLocation { get; set; }
-
-        public DateTime StartedAt { get; set; }
-
-        public DateTime EndedAt { get; set; }
-     
     }
-
 }

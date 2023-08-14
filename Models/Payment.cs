@@ -6,20 +6,13 @@ namespace RealTimeUber.Models
     public class Payment
     {
         [Key]
-        public string Id { get; set; }
-
-        [Required]
-        public string PassengerId { get; set; }
-        [ForeignKey("PassengerId")]
-        public Passenger Passenger { get; set; }
-
-        public string Amount { get; set; }
-
+        public int Id { get; set; }
+        public double Amount { get; set; }
         public string PaymentMethod { get; set; }
-        [Required]
-        public string TripId { get; set; }
 
-        [ForeignKey("TripId")]
+        [ForeignKey("Trip")]
+        public int TripId { get; set; } // FK 
+        [NotMapped]
         public Trip Trip { get; set; }
     }
 

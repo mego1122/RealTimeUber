@@ -1,18 +1,29 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.InteropServices;
 
 namespace RealTimeUber.Models
 {
-    public class Driver : IdentityUser
+    public class Driver : ApplicationUser
     {
+        public Driver()
+        {
+            StartLocations = new HashSet<StartLocation>();
+            EndLocations = new HashSet<EndLocation>();
+        }
 
-        public string VehicleId { get; set; }
-
-        [ForeignKey("VehicleId")]
+        [ForeignKey("Vehicle")]
+        // [DefaultValue(0)]
+        public int VehicleId { get; set; } // FK
         public Vehicle Vehicle { get; set; }
+        [NotMapped]
+        public ICollection<Trip> Trips { get; set; }
 
-        public bool IsAvailable { get; set; }
-       // public List<Trip> Trips { get; internal set; }
-      //  public List<Rating> Ratings { get; internal set; }
+
+        [NotMapped]
+        public ICollection<StartLocation> StartLocations { get; set; }
+
+        [NotMapped]
+        public ICollection<EndLocation> EndLocations { get; set; }
     }
-
 }
