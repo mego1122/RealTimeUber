@@ -32,12 +32,6 @@ namespace RealTimeUber.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
-
-
-
-
-
-
             modelBuilder.Entity<ApplicationUser>()
            .HasKey(u => u.Id);
 

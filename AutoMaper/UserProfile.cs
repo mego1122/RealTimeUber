@@ -22,8 +22,6 @@ namespace RealTimeUber.AutoMaper
                   .ForMember(v => v.Latitude, a => a.MapFrom(vd => vd.Latitude))
                   .ForMember(v => v.Latitude, a => a.MapFrom(vd => vd.Latitude))
                   .ForMember(v => v.ApplicationUserId, a => a.MapFrom(vd => vd.ApplicationUserId)).ReverseMap();
-
-
         }
         }
 }
