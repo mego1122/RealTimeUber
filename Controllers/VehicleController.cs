@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using LoggerService;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using RealTimeUber.Data_Access_Layer.Unit_of_Work_Interface;
 using RealTimeUber.DTO;
 using RealTimeUber.Models;
@@ -16,10 +18,12 @@ namespace RealTimeUber.Controllers
     {
         private readonly IUnitOfWork unitOfWork;
         private readonly IMapper _mapper;
-        public VehicleController(IUnitOfWork unitOfWork, IMapper mapper)
+        ILoggerManager _logger;
+        public VehicleController(IUnitOfWork unitOfWork, IMapper mapper, ILoggerManager logger)
         {
             this.unitOfWork = unitOfWork;
             _mapper = mapper;
+            _logger = logger;
         }
 
 
@@ -27,10 +31,11 @@ namespace RealTimeUber.Controllers
         [HttpGet]
         public IEnumerable<VehicleDTO> Get()
         {
+            _logger.LogInfo("Request received to Get All Vehicles");
             List<Vehicle> Vehicles = unitOfWork.Vehicles.GetAll().ToList();
-              
+            //log vehicles
+            _logger.LogInfo("Get Vehicles requested" + Vehicles);
             var x= _mapper.Map<List<VehicleDTO>>(Vehicles);
-
             return x.ToList();
         }
 
