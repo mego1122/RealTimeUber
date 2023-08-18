@@ -119,6 +119,8 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+//app.UseMiddleware<GlobalErrorHandlingMiddleWare>();
 app.UseMiddleware<ResponseMiddleware>();
 app.UseCors(policy =>
 {
