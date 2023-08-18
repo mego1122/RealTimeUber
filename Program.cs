@@ -15,17 +15,23 @@ using Microsoft.IdentityModel.Tokens;
 using System.Net.Http;
 using System.Text;
 using RealTimeUber.Configuration;
+using NLog.Extensions.Logging;
+using NLog.Web;
+using NLog;
+using LoggerService;
+
 
 var builder = WebApplication.CreateBuilder(args);
 ConfigurationManager configuration = builder.Configuration;
 // Add services to the container.
 
+LogManager.LoadConfiguration(string.Concat(Directory.GetCurrentDirectory(), "/nlog.config"));
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 //builder.Services.AddSwaggerGen();
-
-
+builder.Services.ConfigureLoggerService();
 builder.Services.AddSwaggerGen(options =>
 {
     options.SwaggerDoc("V1", new OpenApiInfo
@@ -114,6 +120,7 @@ if (app.Environment.IsDevelopment())
     });
 }
 
+
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
@@ -128,6 +135,8 @@ app.UseCors(policy =>
           .AllowAnyHeader()
           .AllowAnyOrigin();
 });
+
+
 
 
 app.Run();
