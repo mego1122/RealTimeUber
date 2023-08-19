@@ -2,6 +2,7 @@
 using LoggerService;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 using RealTimeUber.Data_Access_Layer.Unit_of_Work_Interface;
 using RealTimeUber.DTO;
@@ -16,15 +17,35 @@ namespace RealTimeUber.Controllers
     [ApiController]
     public class VehicleController : ControllerBase
     {
+        private readonly IStringLocalizer<VehicleController> _localizer;
         private readonly IUnitOfWork unitOfWork;
         private readonly IMapper _mapper;
         ILoggerManager _logger;
-        public VehicleController(IUnitOfWork unitOfWork, IMapper mapper, ILoggerManager logger)
+        public VehicleController(IUnitOfWork unitOfWork, IMapper mapper, ILoggerManager logger, IStringLocalizer<VehicleController> localizerr)
         {
             this.unitOfWork = unitOfWork;
             _mapper = mapper;
             _logger = logger;
+            _localizer = localizerr;
         }
+
+
+
+
+
+
+
+        //[HttpGet]
+        //public ActionResult<string> Get()
+        //{
+        //    // Get the localized string based on the current culture
+        //    var localizedString = _localizer["Welcome"].Value;
+
+        //    return Ok(localizedString);
+        //}
+
+
+
 
 
         // GET: api/<VehicleController>
@@ -35,7 +56,7 @@ namespace RealTimeUber.Controllers
             List<Vehicle> Vehicles = unitOfWork.Vehicles.GetAll().ToList();
             //log vehicles
             _logger.LogInfo("Get Vehicles requested" + Vehicles);
-            var x= _mapper.Map<List<VehicleDTO>>(Vehicles);
+            var x = _mapper.Map<List<VehicleDTO>>(Vehicles);
             return x.ToList();
         }
 
