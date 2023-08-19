@@ -24,58 +24,31 @@ namespace RealTimeUber.GenericResponse
         }
 
         public async Task Invoke(HttpContext context)
-        {
-            try
-            {
+        {         
                 var currentBody = context.Response.Body;
                 using (var memoryStream = new MemoryStream())
-                {
-                    if (context.Response.StatusCode != 204)
-                    {
+                {                   
                         //set the current response to the memorystream.
                         context.Response.Body = memoryStream;
                         await _next(context);
                         //reset the body 
                         context.Response.Body = currentBody;
                         memoryStream.Seek(0, SeekOrigin.Begin);
-
                         var readToEnd = new StreamReader(memoryStream).ReadToEnd();
                         var objResult = JsonConvert.DeserializeObject(readToEnd);
-                        var result = CommonApiResponse.Create((HttpStatusCode)context.Response.StatusCode, objResult, null);
-                        _logger.LogInfo("____The response___****_" + JsonConvert.SerializeObject(result));
-                        await context.Response.WriteAsync(JsonConvert.SerializeObject(result));
-                    }
+                        var result = CommonApiResponse.Create((HttpStatusCode)context.Response.StatusCode, JsonConvert.SerializeObject(objResult));
+                        if (result.StatusCode >= 200 && result.StatusCode < 300)
+                        {
+                            _logger.LogInfo("____The response___****_" + JsonConvert.SerializeObject(result));
+                        }
+                         else
+                         {
+                              _logger.LogError("____The error___****_" + JsonConvert.SerializeObject(result));
+                          }
+     
+                      
+                       await context.Response.WriteAsync(JsonConvert.SerializeObject(result));
                 }
-            }
-            catch (Exception error)
-            {
-                //var response = context.Response;
-                //response.ContentType = "application/json";
-                    //switch (error)
-                    //{
-
-                    //    case ValidationException:
-                    //        // log exception
-                    //        response.StatusCode = 400;
-                    //        break;
-
-                    //    case KeyNotFoundException:
-                    //        // log exception  
-                    //        response.StatusCode = 404;
-                    //        break;
-
-                    //    default:
-                    //        // log exception
-                    //        response.StatusCode = 500;
-                    //        break;
-                    //}
-
-                var result = CommonApiResponse.Create((HttpStatusCode)context.Response.StatusCode, null, error.Message);
-
-                _logger.LogError("____The Error____****_" + JsonConvert.SerializeObject(result));
-                await context.Response.WriteAsync(JsonConvert.SerializeObject(result));
-            }
-
         } 
     }
 
@@ -90,26 +63,26 @@ namespace RealTimeUber.GenericResponse
 
         public class CommonApiResponse
         {
-            public static CommonApiResponse Create(HttpStatusCode statusCode, object result = null, string errorMessage = null)
+            public static CommonApiResponse Create(HttpStatusCode statusCode, object result = null)
             {
-                return new CommonApiResponse(statusCode, result, errorMessage);
+                return new CommonApiResponse(statusCode, result);
             }
 
-            public string Version => "1.2.3";
+           
 
             public int StatusCode { get; set; }
             public string RequestId { get; }
 
-            public string ErrorMessage { get; set; }
+            
 
             public object Result { get; set; }
 
-            protected CommonApiResponse(HttpStatusCode statusCode, object result = null, string errorMessage = null)
+            protected CommonApiResponse(HttpStatusCode statusCode, object result = null)
             {
                 RequestId = Guid.NewGuid().ToString();
                 StatusCode = (int)statusCode;
                 Result = result;
-                ErrorMessage = errorMessage;
+               
             }
         }
     }
