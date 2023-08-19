@@ -19,13 +19,33 @@ using NLog.Extensions.Logging;
 using NLog.Web;
 using NLog;
 using LoggerService;
-
+using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Builder;
+using System.Globalization;
+using Microsoft.Extensions.Localization;
 
 var builder = WebApplication.CreateBuilder(args);
 ConfigurationManager configuration = builder.Configuration;
 // Add services to the container.
 
 LogManager.LoadConfiguration(string.Concat(Directory.GetCurrentDirectory(), "/nlog.config"));
+
+
+#region Localization and Golbalization
+
+builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
+builder.Services.Configure<RequestLocalizationOptions>(options =>
+{
+    var supportedCultures = new[] { "en-US", "ar-SA" };
+    options.SetDefaultCulture(supportedCultures[0])
+        .AddSupportedCultures(supportedCultures)
+        .AddSupportedUICultures(supportedCultures);
+});
+
+#endregion
+
+
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -108,6 +128,10 @@ builder.Services.AddAuthentication(opt => {
 
 var app = builder.Build();
 
+var localizationOptions = app.Services.GetRequiredService<IOptions<RequestLocalizationOptions>>().Value;
+
+app.UseRequestLocalization(localizationOptions);
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -127,7 +151,7 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-//app.UseMiddleware<GlobalErrorHandlingMiddleWare>();
+
 app.UseMiddleware<ResponseMiddleware>();
 app.UseCors(policy =>
 {
@@ -136,7 +160,13 @@ app.UseCors(policy =>
           .AllowAnyOrigin();
 });
 
+//app.MapGet("/api/vehicles", (IStringLocalizer<Program> localizer) =>
+//{
+//    // Get the localized string based on the current culture
+//    var localizedString = localizer["Welcome"];
 
+//    return localizedString;
+//});
 
 
 app.Run();
