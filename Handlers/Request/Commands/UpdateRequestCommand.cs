@@ -1,8 +1,9 @@
 ﻿using MediatR;
+using RealTimeUber.Models;
 
 namespace RealTimeUber.Handlers.Request.Commands
 {
-    public class UpdateRequestCommand : IRequest
+    public class UpdateRequestCommand : IRequest<Requestt>
     {
         public int ID { get; set; }
         public string PassengerId { get; set; }
