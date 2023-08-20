@@ -23,6 +23,12 @@ namespace RealTimeUber.AutoMaper
                   .ForMember(v => v.Latitude, a => a.MapFrom(vd => vd.Latitude))
                   .ForMember(v => v.ApplicationUserId, a => a.MapFrom(vd => vd.ApplicationUserId)).ReverseMap();
 
+            CreateMap<Requestt, RequestDTO>()
+                //  .ForMember(v => v.Id, a => a.MapFrom(vd => vd.Id))
+                .ForMember(v => v.PassengerId, a => a.MapFrom(vd => vd.PassengerId))
+                .ForMember(v => v.StartLocationId, a => a.MapFrom(vd => vd.StartLocationId))
+                .ForMember(v => v.EndLocationId, a => a.MapFrom(vd => vd.EndLocationId)).ReverseMap();
+
             CreateMap<EndLocation, EndLocationDTO>().ReverseMap();
         }
         }

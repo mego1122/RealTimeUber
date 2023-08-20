@@ -17,7 +17,7 @@ namespace RealTimeUber.Models
 
         public DbSet<Vehicle> Vehicles { get; set; }
         public DbSet<Trip> Trips { get; set; }
-        public DbSet<Request> Requests { get; set; }
+        public DbSet<Requestt> Requests { get; set; }
 
         public DbSet<Payment> Payments { get; set; }
 
@@ -50,20 +50,20 @@ namespace RealTimeUber.Models
 
 
 
-            modelBuilder.Entity<Request>()
+            modelBuilder.Entity<Requestt>()
        .HasOne(r => r.Passenger)
        .WithMany()
        .HasForeignKey(r => r.PassengerId)
        .OnDelete(DeleteBehavior.NoAction);
 
 
-            modelBuilder.Entity<Request>()
+            modelBuilder.Entity<Requestt>()
        .HasOne(r => r.StartLocation)
        .WithMany()
        .HasForeignKey(r => r.StartLocationId)
        .OnDelete(DeleteBehavior.NoAction);
 
-            modelBuilder.Entity<Request>()
+            modelBuilder.Entity<Requestt>()
        .HasOne(r => r.EndLocation)
        .WithMany()
        .HasForeignKey(r => r.EndLocationId)

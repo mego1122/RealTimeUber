@@ -19,7 +19,7 @@ namespace RealTimeUber.Models
 
         [ForeignKey("Request")]
         public int RequestId { get; set; }
-        public Request Request { get; set; }
+        public Requestt Request { get; set; }
 
 
         [StringLength(450)]

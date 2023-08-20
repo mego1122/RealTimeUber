@@ -1,6 +1,6 @@
 using System;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.DependencyInjection;
+
 using Microsoft.Extensions.Options;
 using RealTimeUber.Models;
 using Microsoft.EntityFrameworkCore;
@@ -23,6 +23,8 @@ using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Builder;
 using System.Globalization;
 using Microsoft.Extensions.Localization;
+using System.Reflection;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 ConfigurationManager configuration = builder.Configuration;
@@ -44,8 +46,7 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
 
 #endregion
 
-
-
+//builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
