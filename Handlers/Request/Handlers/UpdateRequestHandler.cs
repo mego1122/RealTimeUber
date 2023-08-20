@@ -7,7 +7,7 @@ using RealTimeUber.Models;
 
 namespace RealTimeUber.Handlers.Request.Handlers
 {
-    public class UpdateRequestHandler : IRequestHandler<UpdateRequestCommand>
+    public class UpdateRequestHandler : IRequest<Requestt>
     {
        
 
@@ -18,7 +18,7 @@ namespace RealTimeUber.Handlers.Request.Handlers
             _IRequestRepository = RequestRepository;
             _mapper = mapper;
         }
-        public async Task Handle(UpdateRequestCommand command, CancellationToken cancellationToken)
+        public async Task<Requestt> Handle(UpdateRequestCommand command, CancellationToken cancellationToken)
         {
             var RequestDetails = await _IRequestRepository.GetByIdAsync(command.ID);
             
@@ -27,7 +27,7 @@ namespace RealTimeUber.Handlers.Request.Handlers
             RequestDetails.EndLocationId = command.EndLocationId;
   
 
-             await _IRequestRepository.UpdateRequestAsync(RequestDetails);
+            return await _IRequestRepository.UpdateRequestAsync(RequestDetails);
         }
 
 

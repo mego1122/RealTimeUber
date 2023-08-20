@@ -33,7 +33,7 @@ namespace RealTimeUber.Data_Access_Layer.Repository_Classes
             
         }
 
-        public async Task<IEnumerable<Requestt>> GetAllAsync()
+        public async Task<List<Requestt>> GetAllAsync()
         {
             return await context.Set<Requestt>().ToListAsync();
         }
@@ -82,9 +82,11 @@ namespace RealTimeUber.Data_Access_Layer.Repository_Classes
             return await context.Set<Requestt>().ToListAsync();
         }
 
-        public async Task UpdateRequestAsync(Requestt entity)
+        public async Task<Requestt> UpdateRequestAsync(Requestt entity)
         {
             context.Entry(entity).State = EntityState.Modified;
+           var UpdatedRequest= GetByIdAsync(entity.Id);
+           return await UpdatedRequest;
         }
 
       

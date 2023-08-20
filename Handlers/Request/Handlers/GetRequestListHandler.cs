@@ -8,7 +8,7 @@ using RealTimeUber.Models;
 
 namespace RealTimeUber.Handlers.Request.Handlers
 {
-    public class GetRequestListHandler : IRequestHandler<GetRequestListQuery, IEnumerable<Requestt>>
+    public class GetRequestListHandler : IRequestHandler<GetRequestListQuery, List<Requestt>>
     {
         private readonly IRequestRepository _IRequestRepository;
         private readonly IMapper _mapper;
@@ -18,9 +18,9 @@ namespace RealTimeUber.Handlers.Request.Handlers
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<Requestt>> Handle(GetRequestListQuery query, CancellationToken cancellationToken)
+        public async Task<List<Requestt>> Handle(GetRequestListQuery query, CancellationToken cancellationToken)
         {
-            return await _IRequestRepository.GetManyAsync();
+            return await _IRequestRepository.GetAllAsync();
         }
 
         

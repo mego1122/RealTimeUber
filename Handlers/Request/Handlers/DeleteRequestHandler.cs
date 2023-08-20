@@ -8,7 +8,7 @@ using RealTimeUber.Models;
 
 namespace RealTimeUber.Handlers.Request.Handlers
 {
-    public class DeleteRequestHandler : IRequestHandler<DeleteRequestCommand>
+    public class DeleteRequestHandler : IRequest
     {
         private readonly IRequestRepository _IRequestRepository;
         private readonly IMapper _mapper;
