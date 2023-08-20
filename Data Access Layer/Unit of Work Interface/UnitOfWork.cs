@@ -9,6 +9,7 @@ namespace RealTimeUber.Data_Access_Layer.Unit_of_Work_Interface
         private TrackingContext _context;
         public IVehicleRepository Vehicles { get;  }
         public IStartLocationRepository StartLocations { get; }
+        public IEndLocationRepository EndLocations { get; }
 
         //IStartLocationRepository IUnitOfWork.StartLocations => throw new NotImplementedException();
         //public IGenericRepository<Vehicle> Vehicles => new GenericRepository<Vehicle>(_context);
@@ -16,8 +17,12 @@ namespace RealTimeUber.Data_Access_Layer.Unit_of_Work_Interface
         public UnitOfWork(TrackingContext ctx)
         {
             _context = ctx;
+
             Vehicles = new VehicleRepository(_context);
-            StartLocations=new StartLocationRepository(_context);
+
+            StartLocations = new StartLocationRepository(_context);
+
+            EndLocations = new EndLocationRepository(_context);
         }
 
 

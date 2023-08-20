@@ -5,7 +5,7 @@ VisualStudioVersion = 17.6.33712.159
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RealTimeUber", "RealTimeUber.csproj", "{38FDB3E7-A107-4E2E-8AEC-B7C9EAD3EFDD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoggerService", "..\LoggerService\LoggerService.csproj", "{72605BB8-BEDC-45DF-B650-7E61FFF5A30D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoggerService", "..\LoggerService\LoggerService.csproj", "{0945CB08-7265-4916-A838-62B692CAE8AE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{38FDB3E7-A107-4E2E-8AEC-B7C9EAD3EFDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38FDB3E7-A107-4E2E-8AEC-B7C9EAD3EFDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38FDB3E7-A107-4E2E-8AEC-B7C9EAD3EFDD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{72605BB8-BEDC-45DF-B650-7E61FFF5A30D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{72605BB8-BEDC-45DF-B650-7E61FFF5A30D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{72605BB8-BEDC-45DF-B650-7E61FFF5A30D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{72605BB8-BEDC-45DF-B650-7E61FFF5A30D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0945CB08-7265-4916-A838-62B692CAE8AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0945CB08-7265-4916-A838-62B692CAE8AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0945CB08-7265-4916-A838-62B692CAE8AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0945CB08-7265-4916-A838-62B692CAE8AE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -8,7 +8,7 @@ namespace RealTimeUber.Data_Access_Layer.Unit_of_Work_Interface
 
         IVehicleRepository Vehicles { get; }
         IStartLocationRepository  StartLocations { get; }
-
+        IEndLocationRepository EndLocations { get; }
 
         Task Complete();
 

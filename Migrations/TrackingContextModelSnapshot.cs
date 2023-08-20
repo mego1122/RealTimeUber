@@ -291,6 +291,7 @@ namespace RealTimeUber.Migrations
 
                     b.Property<string>("ApplicationUserId")
                         .IsRequired()
+                        .HasMaxLength(450)
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<double>("Latitude")
@@ -303,8 +304,6 @@ namespace RealTimeUber.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("StartLocationId");
-
-                    b.HasIndex("ApplicationUserId");
 
                     b.ToTable("StartLocations");
                 });
@@ -416,17 +415,6 @@ namespace RealTimeUber.Migrations
                     b.Navigation("Passenger");
 
                     b.Navigation("StartLocation");
-                });
-
-            modelBuilder.Entity("RealTimeUber.Models.StartLocation", b =>
-                {
-                    b.HasOne("RealTimeUber.Models.ApplicationUser", "ApplicationUser")
-                        .WithMany()
-                        .HasForeignKey("ApplicationUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ApplicationUser");
                 });
 
             modelBuilder.Entity("RealTimeUber.Models.Trip", b =>
