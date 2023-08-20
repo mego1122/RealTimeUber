@@ -7,13 +7,13 @@ namespace RealTimeUber.Models
         public Passenger()
         {
             Trips = new HashSet<Trip>();
-            Requests = new HashSet<Request>();
+            Requests = new HashSet<Requestt>();
         }
 
         [NotMapped]
         public ICollection<Trip> Trips { get; set; }
         [NotMapped]
-        public ICollection<Request> Requests { get; set; }
+        public ICollection<Requestt> Requests { get; set; }
 
 
     }

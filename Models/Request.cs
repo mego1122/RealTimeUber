@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RealTimeUber.Models
 {
-    public class Request
+    public class Requestt
     {
         [Key]
         public int Id { get; set; }
