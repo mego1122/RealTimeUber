@@ -12,6 +12,7 @@ namespace RealTimeUber.Models
 
         public TrackingContext(DbContextOptions<TrackingContext> options) : base(options)
         { }
+       
         public DbSet<Driver> Driver { get; set; }
         public DbSet<Passenger> Passenger { get; set; }
 

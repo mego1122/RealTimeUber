@@ -27,6 +27,7 @@ using RealTimeUber.Handlers.Request.Queries;
 using RealTimeUber.Handlers.Request.Handlers;
 using System.Reflection;
 using MediatR;
+using System.Numerics;
 
 var builder = WebApplication.CreateBuilder(args);
 ConfigurationManager configuration = builder.Configuration;
@@ -97,6 +98,11 @@ builder.Services.AddSwaggerGen(options =>
 builder.Services.AddDbContext<TrackingContext>(options => options.UseSqlServer(
     configuration.GetConnectionString("DefaultConnection")),
   ServiceLifetime.Scoped);
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<TrackingContext>()
+                .AddRoles<IdentityRole>()
+                .AddSignInManager<SignInManager<ApplicationUser>>();
+
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
