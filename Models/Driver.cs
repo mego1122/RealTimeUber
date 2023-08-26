@@ -20,10 +20,10 @@ namespace RealTimeUber.Models
         public ICollection<Trip> Trips { get; set; }
 
 
-        [NotMapped]
+     
         public ICollection<StartLocation> StartLocations { get; set; }
 
-        [NotMapped]
+       
         public ICollection<EndLocation> EndLocations { get; set; }
     }
 }

@@ -3,6 +3,9 @@ using RealTimeUber.Models;
 
 namespace RealTimeUber.Data_Access_Layer
 {
-    public interface IDriverRepository : IGenericRepository<Driver> { }
+    public interface IDriverRepository : IGenericRepository<Driver> {
+
+        //IQueryable<Driver> Drivers { get; }
+    }
 
 }

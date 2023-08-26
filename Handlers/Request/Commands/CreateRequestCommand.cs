@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using Azure.Core;
+using MediatR;
 using RealTimeUber.DTO;
 using RealTimeUber.Models;
 
@@ -15,7 +16,13 @@ namespace RealTimeUber.Handlers.Request.Commands
             PassengerId = PassengerId;
             StartLocationId = StartLocationId;
             EndLocationId = EndLocationId;
-           
+        }
+
+        public CreateRequestCommand(Requestt request)
+        {
+            PassengerId = request.PassengerId;
+            StartLocationId = request.StartLocationId;
+            EndLocationId = request.EndLocationId;
         }
     }
 }
