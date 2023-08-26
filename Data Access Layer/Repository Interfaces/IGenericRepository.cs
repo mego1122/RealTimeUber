@@ -4,6 +4,8 @@ namespace RealTimeUber.Data_Access_Layer.Repository_Interfaces
 {
     public interface IGenericRepository<T> where T : class
     {
+
+        IQueryable<T> Entities { get; }
         T GetById(int id);
         IEnumerable<T> GetAll();
         IEnumerable<T> Find(Expression<Func<T, bool>> expression);

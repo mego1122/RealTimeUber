@@ -83,6 +83,15 @@ namespace RealTimeUber.Models
 .HasForeignKey(t => t.VehicleId)
 .OnDelete(DeleteBehavior.NoAction);
 
+
+            modelBuilder.Entity<StartLocation>()
+.HasOne(t => t.ApplicationUser)
+.WithMany()
+.HasForeignKey(t => t.ApplicationUserId)
+.OnDelete(DeleteBehavior.NoAction);
+
+
+
             //          modelBuilder.Entity<Vehicle>()
             // .HasOne(t => t.Driver)
             // .WithMany()

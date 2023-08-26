@@ -10,13 +10,6 @@ namespace RealTimeUber.Models
         [Key]
         public int TripId { get; set; }
 
-
-
-
-
-
-
-
         [ForeignKey("Request")]
         public int RequestId { get; set; }
         public Requestt Request { get; set; }
