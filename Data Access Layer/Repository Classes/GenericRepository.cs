@@ -1,4 +1,5 @@
-﻿using RealTimeUber.Data_Access_Layer.Repository_Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using RealTimeUber.Data_Access_Layer.Repository_Interfaces;
 using RealTimeUber.Models;
 using System.Linq.Expressions;
 
@@ -12,6 +13,10 @@ namespace RealTimeUber.Data_Access_Layer.Repository_Classes
         {
             this.context = context;
         }
+
+        public IQueryable<T> Entities =>context.Set<T>();
+
+
         public void Add(T entity)
         {
             context.Set<T>().Add(entity);

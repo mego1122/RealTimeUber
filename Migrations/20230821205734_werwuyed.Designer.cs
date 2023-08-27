@@ -12,8 +12,8 @@ using RealTimeUber.Models;
 namespace RealTimeUber.Migrations
 {
     [DbContext(typeof(TrackingContext))]
-    [Migration("20230818142252_initial")]
-    partial class initial
+    [Migration("20230821205734_werwuyed")]
+    partial class werwuyed
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -155,11 +155,18 @@ namespace RealTimeUber.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -167,7 +174,7 @@ namespace RealTimeUber.Migrations
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetimeoffset");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("MobileNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -255,7 +262,7 @@ namespace RealTimeUber.Migrations
                     b.ToTable("Payments");
                 });
 
-            modelBuilder.Entity("RealTimeUber.Models.Request", b =>
+            modelBuilder.Entity("RealTimeUber.Models.Requestt", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -393,7 +400,7 @@ namespace RealTimeUber.Migrations
                     b.Navigation("ApplicationUser");
                 });
 
-            modelBuilder.Entity("RealTimeUber.Models.Request", b =>
+            modelBuilder.Entity("RealTimeUber.Models.Requestt", b =>
                 {
                     b.HasOne("RealTimeUber.Models.EndLocation", "EndLocation")
                         .WithMany()
@@ -428,7 +435,7 @@ namespace RealTimeUber.Migrations
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("RealTimeUber.Models.Request", "Request")
+                    b.HasOne("RealTimeUber.Models.Requestt", "Request")
                         .WithMany()
                         .HasForeignKey("RequestId")
                         .OnDelete(DeleteBehavior.Cascade)

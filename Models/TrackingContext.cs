@@ -12,6 +12,7 @@ namespace RealTimeUber.Models
 
         public TrackingContext(DbContextOptions<TrackingContext> options) : base(options)
         { }
+       
         public DbSet<Driver> Driver { get; set; }
         public DbSet<Passenger> Passenger { get; set; }
 
@@ -81,6 +82,15 @@ namespace RealTimeUber.Models
 .WithMany()
 .HasForeignKey(t => t.VehicleId)
 .OnDelete(DeleteBehavior.NoAction);
+
+
+            modelBuilder.Entity<StartLocation>()
+.HasOne(t => t.ApplicationUser)
+.WithMany()
+.HasForeignKey(t => t.ApplicationUserId)
+.OnDelete(DeleteBehavior.NoAction);
+
+
 
             //          modelBuilder.Entity<Vehicle>()
             // .HasOne(t => t.Driver)

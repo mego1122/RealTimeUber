@@ -4,7 +4,7 @@ using RealTimeUber.Models;
 
 namespace RealTimeUber.Handlers.Request.Queries
 {
-    public class GetRequestListQuery:IRequest<List<Requestt>>
+    public class GetRequestListQuery:IRequest <List<Requestt>>
     {
 
     }

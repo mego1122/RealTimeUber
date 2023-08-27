@@ -15,7 +15,6 @@ using Microsoft.IdentityModel.Tokens;
 using System.Net.Http;
 using System.Text;
 using RealTimeUber.Configuration;
-using NLog.Extensions.Logging;
 using NLog.Web;
 using NLog;
 using LoggerService;
@@ -23,8 +22,15 @@ using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Builder;
 using System.Globalization;
 using Microsoft.Extensions.Localization;
-using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
+using RealTimeUber.Handlers.Request.Queries;
+using RealTimeUber.Handlers.Request.Handlers;
+using System.Reflection;
+using MediatR;
+using System.Numerics;
+using RealTimeUber.Services.Request;
+using Microsoft.AspNetCore.SignalR;
+using RealTimeUber.SignalR;
 
 var builder = WebApplication.CreateBuilder(args);
 ConfigurationManager configuration = builder.Configuration;
@@ -45,8 +51,12 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
 });
 
 #endregion
+//builder.Services.AddScoped<GetRequestListHandler>();
+builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
+//builder.Services.AddMediatR(typeof(GetRequestListHandler).Assembly);
 
-//builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
+
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -90,11 +100,28 @@ builder.Services.AddSwaggerGen(options =>
 
 builder.Services.AddDbContext<TrackingContext>(options => options.UseSqlServer(
     configuration.GetConnectionString("DefaultConnection")),
-  ServiceLifetime.Scoped);
+  ServiceLifetime.Transient);
 
+
+
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<TrackingContext>()
+                .AddRoles<IdentityRole>().AddDefaultTokenProviders();
+
+//builder.Services.AddScoped<SignInManager<ApplicationUser>>();
+//builder.Services.AddScoped<UserManager<ApplicationUser>>();
+
+
+
+
+builder.Services.AddSignalR();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 builder.Services.AddScoped<IVehicleRepository, VehicleRepository>();
+
+    builder.Services.AddScoped<IStartLocationRepository, StartLocationRepository>();
+builder.Services.AddScoped<IRequestRepository, RequestRepository>();
+builder.Services.AddScoped<RequestService>();
 //builder.Services.AddDbContextPool<TrackingContext>(o => o.UseSqlServer("Specify the database connection string here..."));
 //builder.Services.AddDbContext<TrackingContext>();
 
@@ -103,7 +130,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("MyPolicy",
       policy => policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 });
-
+builder.Services.AddSignalR();
 
 builder.Services.AddCors();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());

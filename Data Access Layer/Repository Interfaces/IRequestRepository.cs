@@ -9,7 +9,7 @@ namespace RealTimeUber.Data_Access_Layer.Repository_Interfaces
         Task<Requestt> AddAsync(Requestt entity);
         Task DeleteAsync(Requestt entity);
         Task DeleteManyAsync(Expression<Func<Requestt, bool>> filter);
-        Task<IEnumerable<Requestt>> GetAllAsync();
+        Task<List<Requestt>> GetAllAsync();
         Task<Requestt> GetByIdAsync(int id);
         Task<IEnumerable<Requestt>> GetManyAsync(Expression<Func<Requestt, bool>> filter = null,
                                           Func<IQueryable<Requestt>, IOrderedQueryable<Requestt>> orderBy = null,
@@ -17,7 +17,7 @@ namespace RealTimeUber.Data_Access_Layer.Repository_Interfaces
                                           int? skip = null,
                                           params string[] includeProperties);
       
-        public  Task UpdateRequestAsync(Requestt studentDetails);
+        public  Task<Requestt> UpdateRequestAsync(Requestt studentDetails);
       
     }
 

@@ -6,7 +6,7 @@ using RealTimeUber.Models;
 
 namespace RealTimeUber.Handlers.Payment.Handlers
 {
-    public class DeletePaymentHandler : IRequestHandler<DeletePaymentCommand>
+    public class DeletePaymentHandler : IRequest
     {
         private readonly IPaymentRepository _IPaymentRepository;
         private readonly IMapper _mapper;
