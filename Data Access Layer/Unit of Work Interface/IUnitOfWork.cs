@@ -10,6 +10,7 @@ namespace RealTimeUber.Data_Access_Layer.Unit_of_Work_Interface
         IStartLocationRepository  StartLocations { get; }
         IEndLocationRepository EndLocations { get; }
         IRequestRepository Requests { get; }
+        IPaymentRepository Payments { get; }
 
 
         Task Complete();

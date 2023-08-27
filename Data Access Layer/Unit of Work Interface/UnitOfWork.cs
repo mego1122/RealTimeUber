@@ -12,6 +12,7 @@ namespace RealTimeUber.Data_Access_Layer.Unit_of_Work_Interface
         public IEndLocationRepository EndLocations { get; }
 
         public IRequestRepository Requests { get; }
+        public IPaymentRepository Payments { get; } 
 
         //IStartLocationRepository IUnitOfWork.StartLocations => throw new NotImplementedException();
         //public IGenericRepository<Vehicle> Vehicles => new GenericRepository<Vehicle>(_context);
@@ -25,8 +26,12 @@ namespace RealTimeUber.Data_Access_Layer.Unit_of_Work_Interface
             StartLocations = new StartLocationRepository(_context);
 
             EndLocations = new EndLocationRepository(_context);
+            
             StartLocations=new StartLocationRepository(_context);
+            
             Requests=new RequestRepository(_context);
+
+            Payments = new PaymentRepository(_context);
         }
 
 

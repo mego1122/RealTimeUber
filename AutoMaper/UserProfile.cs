@@ -30,6 +30,8 @@ namespace RealTimeUber.AutoMaper
                 .ForMember(v => v.EndLocationId, a => a.MapFrom(vd => vd.EndLocationId)).ReverseMap();
 
             CreateMap<EndLocation, EndLocationDTO>().ReverseMap();
+
+            CreateMap<Payment, PaymentDTO>().ReverseMap();
         }
         }
 }
